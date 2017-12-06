@@ -1,0 +1,38 @@
+
+常用语法总结---详细语法需要查看bat编程规范
+
+
+1. 判断---if else 这里一定要注意格式，特别是if后面加空格，else前后加空格，否则就会出问题
+
+@echo off
+set ss=1   rem:设置一个变量为1
+if %ss% == 1 (   rem: %% 两个百分号中间表示变量，不过不加百分号，那么ss就不会等于1
+echo hello 你好
+) else (
+echo 我很不好
+)
+
+pause
+
+2.窗口显示内容重定向  用一个符号‘>’就可以了 
+eg:
+adb shell locat | find "CTRL-EVENT-DIS" > D:\HELLO.txt   将DOS命令行窗口显示的内容保存到D盘HELLO.txt文件中
+                                                         常用方法：把一些帮助文档说明重定向出来，就可以使用阅读器去查阅了
+
+
+循环、定时器延时的用法-----如果需要更精准的延时时间，可以手动调节Output_time，去计算延时差值。最好用打印语句打印时间，更直观
+
+set Output_time=36000
+for /l %%i in (1,1,20) DO (   rem 表示循环20次
+echo  !time!               
+set dt="!data:~0,4!!data:~5,2!!data:~8,2!.!time:~0,2!!time:~3,2!!time:~6,2!""        rem 将时间用指定格式显示出来
+
+call :delay %Ooutput_time%  rem 调用延时
+
+)
+
+:delay
+echo WScript.Sleep %1>delay.vbs    rem 这里是'1'使用数字1，表示延时多少秒
+CScript //B delay.vbs
+del delay.vbs
+goto :eof
