@@ -36,3 +36,42 @@ echo WScript.Sleep %1>delay.vbs    rem 这里是'1'使用数字1，表示延时�
 CScript //B delay.vbs
 del delay.vbs
 goto :eof
+
+
+3.创建一个文件
+fsutil file createnew ./test.txt 10  rem 当前目录下创建一个10KB名字为test.txt的文件  当然也可以用Python调用bat指令的方法
+
+4.bat调用adb命令的方法
+echo ###截图TEST
+adb shell /system/bin/screencap -p /sdcard/xx.png  rem 截图重命名为xx.png后保存在sdcard目录下
+adb pull /sdcard/xx.png  .\xx.png   rem 将文件xx.png导出来并替换掉原有xx.png文件
+pause
+
+5.bat调用bat脚本的方法
+---first_run.bat---
+@echo off
+start xx.bat
+call :delay 20  rem 延时20ms
+
+pause
+:delay
+echo WScript.Sleep %l>delay.vbs
+CScript //B delay.vbs
+del delay.vbs
+goto :eof
+
+-------xx.bat-----
+@echo off
+adb remount
+adb rm -rf /system/bin/iperfxxx  rem #iperfxxx可以为任意文件
+adb push iperfxxx /system/bin/
+set IP_ADDR=192.168.xxx.xxx
+set SN=12345343
+adb -s %SN% shell iperf -c %IP_ADDR% -i -p 8000 -t 9999
+pause
+
+
+
+
+
+
