@@ -1,0 +1,34 @@
+1. vi ~/.bashrc 增加别名设置 alias l='ls -lF' 这样打l列出目录下文件，提高效率
+2. vi打开文件 gg是跳到文件开头  shift+g是跳到文件末尾  esc :set nu 是显示行号   :set list 是显示空格与tab键
+  :123 是跳到123行  /str是往下搜索字符串str   ?str是网上搜索字符串str
+3. head是查看文件前面几行  head -30 是看文件前面30行           -----特别有用
+4. tail是查看文件后面几行  tail -30 是看文件后面30行           -----特别有用
+5. grep "aaa" file.txt 是在文件file.txt里查找字符串 aaa
+6. grep -v "asdfg" file.txt 是在文件file.txt里过滤出不包含asdfg的行
+7. tail -f aaa.log 是查看文件aaa.log的动态输出
+   tail -f aaa.log | grep "zxcvb"  是动态查看aaa.log里包含zxcvb的行
+   tail -f aaa.log | grep -v "zxcvb"  是动态查看aaa.log里不包含zxcvb的行
+8. find ./ -name "*txt*" 是查找当前目录下文件名包含 txt 的文件   ---------特别有用
+9. date是查看当前日期
+   date +"%s" 是查看当前时间对应的秒值，即时间戳
+   date -d @1531983518 是将时间戳值转换为可读的时间串
+10. top 是看系统上运行的进程
+    top -p pid 是查看指定pid的进程
+    top -u user1 是查看指定user1下的进程
+11. ps -ef 是查看当前运行的所有进程
+    ps -ef | grep "java" 是查看进程命令行中包含 java 的进程
+    ps -ef | grep "12345" 是查看指定pid为12345的进程
+12. netstat -anpl 是查看系统上的网络连接情况
+    netstat -anpl | grep "12345" 是过滤进程pid为12345的进程的网络连接情况
+13. wc -l a.txt 是查看a.txt文件的行数
+14. awk和sed用法很丰富，需要百度看博客
+15. df命令是看系统磁盘占用情况
+16. du是看目录下的磁盘占用
+    du -sh ./ 是看本目录的磁盘占用
+17. w是看系统上已登录用户
+    whoami是查看当前登录用户是谁
+18. history是查看历史命令
+19. watch ls 是每隔1s执行一遍ls命令   -------特别有用的  -n （时间间隔）  -d 参数
+20. 敲命令时多按TAB键自动补全
+21. mkdir -p /data/a/b/c 是一次性创建父目录与子目录
+22. cat -n a.txt 是输出a.txt内容，并带上行号
